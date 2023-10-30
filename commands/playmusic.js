@@ -1,8 +1,8 @@
 const { SlashCommandBuilder } = require('discord.js');
-const { doQuery } = require('../../mysql.js');
+const { doQuery } = require('../mysql.js');
 const { joinVoiceChannel, createAudioResource } = require('@discordjs/voice');
 const { createAudioPlayer } = require('@discordjs/voice');
-const connectionManager = require('../../voiceConnectionManager.js')
+const connectionManager = require('../voiceConnectionManager.js')
 const player = createAudioPlayer();
 connectionManager.player = player;
 const path = require('node:path');
