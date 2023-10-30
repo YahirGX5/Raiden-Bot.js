@@ -1,11 +1,13 @@
 const { SlashCommandBuilder } = require('discord.js');
 const { doQuery } = require('../mysql.js');
-const { joinVoiceChannel, createAudioResource } = require('@discordjs/voice');
+const { joinVoiceChannel, createAudioResource, AudioPlayerStatus } = require('@discordjs/voice');
 const { createAudioPlayer } = require('@discordjs/voice');
 const connectionManager = require('../voiceConnectionManager.js')
 const player = createAudioPlayer();
 connectionManager.player = player;
 const path = require('node:path');
+require('dotenv').config();
+
 
 
 
@@ -20,7 +22,7 @@ function getRandomInt(min, max) {
 
 // Function for get the song of the database
 async function getSong() {
-    let random_song = getRandomInt(1, 33);
+    let random_song = getRandomInt(1, process.env.MAX_SONGS);
     let song;
 
     try {
@@ -50,6 +52,18 @@ async function getSong() {
     }
 }
 
+
+//Getting the song and playing it
+async function playSong() {
+
+    //Choosing and getting the song from the database
+    let pathOfSong = await getSong();
+
+    //Creating the resource to play in the voice channel and playing it
+    const resource = createAudioResource(pathOfSong);
+    connectionManager.player.play(resource);
+    connectionManager.connection.subscribe(connectionManager.player);
+}
 
 
 module.exports = {
@@ -81,18 +95,16 @@ module.exports = {
 
             
 
+                //Playing a song
+                playSong();
+                interaction.reply('Musicaaa maestro 💃');
 
-            //Choosing and getting the song from the database
-            let pathOfSong = await getSong();
+                
 
-
-
-            //Creating the resource to play in the voice channel and playing it
-            const resource = createAudioResource(pathOfSong);
-            connectionManager.player.play(resource);
-            connectionManager.connection.subscribe(connectionManager.player);
-            
-            interaction.reply('Musicaaa maestro 💃');
+                //When the bot stops playing music, we reproduce another
+                connectionManager.player.on(AudioPlayerStatus.Idle, () => {  
+                    playSong();  
+                });
 
 
 
