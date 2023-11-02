@@ -1,11 +1,11 @@
 const fs = require('node:fs');
 const path = require('node:path');
-const { Client, Collection, Events, GatewayIntentBits } = require('discord.js');
-const { VoiceConnectionStatus, AudioPlayerStatus } = require('@discordjs/voice');
+const { Client, Collection, GatewayIntentBits } = require('discord.js');
 require('dotenv').config();
 
 
-const client = new Client( {intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildVoiceStates]} );
+const client = new Client( {intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildVoiceStates, GatewayIntentBits.GuildMembers,
+                                      GatewayIntentBits.GuildMessages, GatewayIntentBits.MessageContent]} );
 
 client.commands = new Collection();
 
@@ -50,5 +50,7 @@ for (const file of eventFiles) {
 	}
 }
 
+
+module.exports = { client };
 // Log in to Discord with your client's token
 client.login(process.env.TOKEN);

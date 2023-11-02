@@ -1,5 +1,5 @@
 const { SlashCommandBuilder } = require('discord.js');
-const connectionManager = require('../voiceConnectionManager.js');
+const connectionManager = require('../utilities/voiceConnectionManager.js');
 
 module.exports = {
     data: new SlashCommandBuilder()
