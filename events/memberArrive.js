@@ -1,5 +1,5 @@
 const { Events, EmbedBuilder } = require('discord.js');
-const { doQuery } = require('../mysql.js');
+const { doQuery } = require('../utilities/mysql.js');
 const { client } = require('../index.js');
 
 
