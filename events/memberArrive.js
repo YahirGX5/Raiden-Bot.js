@@ -33,8 +33,7 @@ async function sendWelcomeEmbed(member) {
     try {
         
         // Gets the welcome channel to send an embed
-        const welcomeChannelId = '1054816503083569213';
-        const welcomeChannel = client.channels.fetch(welcomeChannelId);
+        const welcomeChannel = client.channels.cache.get('1169008010497106022');
 
 
         // Create the embed of the user
@@ -92,7 +91,7 @@ async function assingRol(member) {
 
     } catch (error) {
 
-        console.error(`Algo salio mal asignano el rol \n ${error}`);
+        console.error(`Algo salio mal asignando el rol \n ${error}`);
 
     }
     

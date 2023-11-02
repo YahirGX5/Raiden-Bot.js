@@ -26,7 +26,7 @@ function doQuery(query, parameters) {
         poolConnection.query({
 
             sql: query,
-            values: [parameters]
+            values: parameters
 
         }, function(err, rows) {
 

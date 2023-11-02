@@ -7,7 +7,11 @@ require('dotenv').config();
 const client = new Client( {intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildVoiceStates, GatewayIntentBits.GuildMembers,
                                       GatewayIntentBits.GuildMessages, GatewayIntentBits.MessageContent]} );
 
+module.exports = { client };
+
+
 client.commands = new Collection();
+
 
 
 const commandsPath = path.join(__dirname, 'commands');
@@ -51,6 +55,6 @@ for (const file of eventFiles) {
 }
 
 
-module.exports = { client };
+
 // Log in to Discord with your client's token
 client.login(process.env.TOKEN);
