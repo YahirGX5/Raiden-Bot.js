@@ -9,7 +9,7 @@ async function createEmbed(member) {
     try {
 
         const embed = new EmbedBuilder()
-        .setTitle(`Welcome ${member.nickname}`)
+        .setTitle(`Welcome ${member.user.displayName}`)
         .setThumbnail(member.user.displayAvatarURL());
 
         return embed;
@@ -62,8 +62,8 @@ async function addMemberInDatabase(member) {
     try {
 
         // Getting the id and nickname of the user in discord 
-        const user_id = member.id;
-        const name = member.nickname;
+        const user_id = member.id.toString();
+        const name = member.user.displayName;
 
 
         // We insert the data in the database
