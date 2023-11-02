@@ -9,8 +9,9 @@ async function createEmbed(member) {
     try {
 
         const embed = new EmbedBuilder()
-        .setTitle(`Welcome ${member.user.displayName}`)
-        .setThumbnail(member.user.displayAvatarURL());
+        .setTitle(`Welcome to the server! 😄`)
+        .setImage(member.user.displayAvatarURL())
+        .setDescription(`${member.user.displayName} just joined the server! 🤩`);
 
         return embed;
 

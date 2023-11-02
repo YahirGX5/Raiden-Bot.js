@@ -41,6 +41,8 @@ function commands_loader (client, commandsPath, commandFiles) {
 //Load the commands
 commands_loader(client, commandsPath, commandFiles)
 
+
+// This loads the events
 const eventsPath = path.join(__dirname, 'events');
 const eventFiles = fs.readdirSync(eventsPath).filter(file => file.endsWith('.js'));
 
